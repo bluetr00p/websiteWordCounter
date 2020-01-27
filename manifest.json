@@ -1,0 +1,28 @@
+{
+    "name": "Word Counter",
+    "version": "1.0.0",
+    "author": "Lukas Werner",
+    "description": "Count the words on a website (only latin based character websites)",
+    "manifest_version": 2,
+    "permissions": [
+        "activeTab",
+        "declarativeContent",
+        "storage",
+        "http://*/*"
+    ],
+    "content_scripts": [
+        {
+            "html": "templates/inject.html",
+            "js": [
+                "thirdParty/jquery.js",
+                "content.js"
+            ],
+            "matches": [
+                "https://*/*"
+            ]
+        }
+    ],
+    "web_accessible_resources": [
+        "templates/*"
+    ]
+}

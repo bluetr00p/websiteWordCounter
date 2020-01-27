@@ -1,0 +1,71 @@
+<script>
+    function ctWd() {
+        var walker = document.createTreeWalker(
+            document.body,
+            NodeFilter.SHOW_TEXT,
+            null,
+            false
+        );
+
+        var count = 0;
+
+        var node;
+        var textNodes = [];
+
+        while (node = walker.nextNode()) {
+            textNodes.push(node.nodeValue);
+            count += node.nodeValue.split(' ').length;
+        }
+        return count-2;
+    }
+    function notify(item) {
+        document.getElementById("ALERT").innerText = "Number of words: " + item;
+        var x = document.getElementById("ALERT");
+        if (x.style.display == "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+    
+    document.getElementById("COUNTINGBTN").addEventListener("mouseover", function () {
+        window.scrollTo(0,document.body.scrollHeight);
+        document.getElementById("COUNTINGBTN").innerText = "Words: " + ctWd();
+        navigator.clipboard.writeText("Words: " + ctWd());
+    });
+</script>
+<div id="ALERT" style="display: none;">
+    Number of words: XX
+</div>
+<button id="COUNTINGBTN">Count</button>
+<style>
+    #COUNTINGBTN {
+        position: fixed;
+        bottom: 15px;
+        left: 15px;
+        width: 50px;
+        height: 50px;
+        font-size: 9px;
+        border: none;
+        background-color: #267df0;
+        border-radius: 25px;
+        color: white;
+        z-index: 99999999999999999;
+        transition: all 1s ease-in-out;
+    }
+    #COUNTINGBTN:hover {transform: scale(2);}
+    #ALERT {
+        position: fixed;
+        bottom: 120px;
+        right: 10px;
+        width: 100px;
+        height: 50px;
+        font-size: 15px;
+        text-align: center;
+        border: none;
+        background-color: #4e4e4e94;
+        border-radius: 10px;
+        color: white;
+        z-index: 99999999999999999;
+    }
+</style>
