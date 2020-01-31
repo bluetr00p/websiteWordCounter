@@ -17,7 +17,7 @@ jobs:
         client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
         refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
     - name: Upload artifact
-      uses: actions/upload-artifact@v1.0.0
+    - uses: actions/upload-artifact@v1.0.0
       with:
         # Artifact name
         name: Extention
