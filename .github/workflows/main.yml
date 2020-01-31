@@ -1,0 +1,16 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Package
+      run: |
+        echo Building..
+        chrome --pack-extension=./
+        cat websiteWordCounter.crx
