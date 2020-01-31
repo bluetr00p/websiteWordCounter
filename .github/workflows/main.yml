@@ -13,4 +13,10 @@ jobs:
       run: |
         echo Building..
         chrome --pack-extension=./
-        cat websiteWordCounter.crx
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        # Artifact name
+        name: Extention.crx
+        # Directory containing files to upload
+        path: ./
