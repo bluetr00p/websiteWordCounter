@@ -8,15 +8,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Package
-      run: |
-        echo Building..
-        chrome --pack-extension=./
+    - uses: trmcnvn/chrome-addon@v2
+      with:
+        # extension is only necessary when updating an existing addon,
+        # omitting it will create a new addon
+        zip: build/my-addon.zip
+        client-id: ${{ secrets.CHROME_CLIENT_ID }}
+        client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
+        refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
         # Artifact name
-        name: Extention.crx
+        name: Extention
         # Directory containing files to upload
-        path: ./
+        path: build/
